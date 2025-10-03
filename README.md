@@ -155,3 +155,12 @@ After warm-up, the learning rate follows a cosine decay curve down to min_lr by 
 - As,it is a .ipynb, there are three separate blocks of code: run the import block, next run the config and data block and lastly run the ViT block.
 - **Caution** : Please replace the *path to vit_cifar10_best.pt* in 'ckpt = torch.load(" *path to vit_cifar10_best.pt* ", map_location=device)' at the end of the ViT block (currently, it is a path loaded by default for my system.)
 
+
+## Model Weights et. al.
+
+Download the trained ViT model checkpoint (~170 MB) here:
+
+-> [vit_cifar10_best.pt](https://drive.google.com/uc?export=download&id=1VdleYd4RGSYVDqBznzJfTGynxc5AFS0Z)
+
+
+
