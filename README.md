@@ -83,14 +83,14 @@ Magnitude (strength) of ops, typically 0–10. 9 is fairly strong but still reas
 
 The CIFAR-10 dataset is loaded and preprocessed before training. Each image is normalized using the dataset’s channel-wise mean and standard deviation:
 
-Mean: (0.4914, 0.4822, 0.4465)
-Standard deviation: (0.2470, 0.2435, 0.2616)
+**Mean**: (0.4914, 0.4822, 0.4465)
+**Standard deviation**: (0.2470, 0.2435, 0.2616)
 
 For the training set, these data augmentation techniques are applied to improve model generalization:
 
-RandomCrop with padding of 4 pixels simulates small translations.
-RandomHorizontalFlip randomly flips images horizontally with a 50% probability.
-If use_randaugment is enabled in the configuration, RandAugment applies additional random transformations to further increase data diversity.
+**RandomCrop** with padding of 4 pixels simulates small translations.
+**RandomHorizontalFlip** randomly flips images horizontally with a 50% probability.
+If **use_randaugment** is enabled in the configuration, RandAugment applies additional random transformations to further increase data diversity.
 
 Images are then converted to tensors and normalized.
 
@@ -103,15 +103,15 @@ Finally, DataLoader objects are created for both training and test sets, handlin
 
 The model is implemented fully from scratch, following the original Vision Transformer (ViT) design. The core components are as follows:
 
-Patch Embedding (PatchEmbed) – Splits the input image into non-overlapping patches and projects each patch into a vector embedding using a convolution layer. This converts a 2D image into a sequence of patch tokens suitable for a transformer.
+**Patch Embedding (PatchEmbed)** – Splits the input image into non-overlapping patches and projects each patch into a vector embedding using a convolution layer. This converts a 2D image into a sequence of patch tokens suitable for a transformer.
 
-Multi-Layer Perceptron (MLP) – A simple two-layer feed-forward network with GELU activation and dropout, used inside each transformer block after the attention layer.
+**Multi-Layer Perceptron (MLP)** – A simple two-layer feed-forward network with GELU activation and dropout, used inside each transformer block after the attention layer.
 
-Multi-Head Self-Attention (MultiHeadSelfAttention) – Computes attention across all patch tokens. The input is projected into queries, keys, and values, split across multiple heads, and combined to learn global relationships among patches.
+**Multi-Head Self-Attention (MultiHeadSelfAttention)** – Computes attention across all patch tokens. The input is projected into queries, keys, and values, split across multiple heads, and combined to learn global relationships among patches.
 
-Stochastic Depth (DropPath) – Implements layer-level dropout, randomly dropping entire residual branches during training to improve generalization and stabilize deeper models.
+**Stochastic Depth (DropPath)** – Implements layer-level dropout, randomly dropping entire residual branches during training to improve generalization and stabilize deeper models.
 
-Transformer Block (Block) – A standard transformer encoder block consisting of:
+**Transformer Block (Block)** – A standard transformer encoder block consisting of:
 
 Layer normalization
 Multi-head self-attention
@@ -133,14 +133,14 @@ The final embedding of the CLS token is normalized and passed through a linear c
 
 These utility components are used to support the training of the Vision Transformer:
 
-LabelSmoothingCE
+**LabelSmoothingCE**
 A custom cross-entropy loss function with label smoothing. Instead of assigning a probability of 1.0 to the correct class, a small portion (smoothing, e.g., 0.1) is distributed across all other classes.
 This regularization technique helps prevent the model from becoming over-confident and often improves generalization, especially on smaller datasets like CIFAR-10.
 
-evaluate()
+**evaluate()**
 A utility function to evaluate the model on a validation or test dataset without computing gradients. It switches the model to evaluation mode, iterates over the data loader, computes predictions, and returns the classification accuracy.
 
-WarmupCosine
+**WarmupCosine**
 A learning rate scheduler that combines a linear warm-up phase with a cosine decay schedule:
 
 During the warm-up phase (first warmup_epochs), the learning rate increases linearly from 0 to the base learning rate.
