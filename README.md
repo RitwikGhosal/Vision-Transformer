@@ -160,7 +160,6 @@ After warm-up, the learning rate follows a cosine decay curve down to min_lr by 
 
 Download the trained ViT model checkpoint (~170 MB) here:
 
--> [vit_cifar10_best.pt](https://drive.google.com/uc?export=download&id=1VdleYd4RGSYVDqBznzJfTGynxc5AFS0Z)
-
+-> [vit_cifar10_best.pt](https://drive.google.com/drive/folders/1VdleYd4RGSYVDqBznzJfTGynxc5AFS0Z)
 
 
